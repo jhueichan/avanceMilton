@@ -65,8 +65,17 @@ public class DaoFormaPago implements FormaPagoInterface{
 	}      
     }
 
+    public PreparedStatement getpStmt() {
+        return pStmt;
+    }
+
+    public void setpStmt(PreparedStatement pStmt) {
+        this.pStmt = pStmt;
+    }
+
     @Override
     public boolean actualizar(FormaPago obj) throws Exception {
+        System.out.println("aqui está la caga");
       String updateQuery = "UPDATE FORMA_PAGO SET FORMA_PAGO = ? WHERE ID  = ?";
 	try {
 		pStmt = dbConnection.prepareStatement(updateQuery);		

@@ -88,8 +88,17 @@ public class DaoCliente implements ClienteInterface {
                 cliente.setEmail(rs.getString(7));
                 cliente.setWebsite(rs.getString(8));
                 cliente.setActivo(rs.getString(9));
+                
+                
+               
+                
                 FormaPago forma=daoFormaPago.buscarPorID(rs.getInt(10));
                 cliente.setFormaPago(forma);
+        
+
+                
+                
+                
                 clientes.add(cliente);
 		}
 	} catch (SQLException e) {
@@ -128,37 +137,45 @@ public class DaoCliente implements ClienteInterface {
 
     @Override
     public boolean actualizar(Cliente cliente) throws Exception {
-         String updateQuery = "UPDATE CLIENTE SET                     "
-                                                 + "RAZON_SOCIAL = ?,"
-                                                 + "DIRECCION = ?,"
-                                                 + "CIUDAD_ID = ?,"
-                                                 + "CONTACTO = ?,"
-                                                 + "TELEFONO = ?,"
-                                                 + "EMAIL = ?,"
-                                                 + "WEBSITE = ?,"
-                                                 + "ACTIVO = ?,"
-                                                 + "FORMA_PAGO_ID = ?"                                                
-                                                 +"  WHERE RUT = ?";
+         System.out.println("muestra algo para probar");
+//         String updateQuery = "UPDATE CLIENTE SET                     "
+//                                                 + "RAZON_SOCIAL = ?,"
+//                                                 + "DIRECCION = ?,"
+//                                                 + "CIUDAD_ID = ?,"
+//                                                 + "CONTACTO = ?,"
+//                                                 + "TELEFONO = ?,"
+//                                                 + "EMAIL = ?,"
+//                                                 + "WEBSITE = ?,"
+//                                                 + "ACTIVO = ?,"
+//                                                 + "FORMA_PAGO_ID = ?"                                                
+//                                                 +"  WHERE RUT = ?";
         try {
-            pStmt = dbConnection.prepareStatement(updateQuery);            
+            csts = dbConnection.prepareCall("{call actualizar_cliente(?,?,?,?,?,?,?,?,?,?)}");     
             
-         
-            pStmt.setString(1, cliente.getRazonSocial());
-            pStmt.setString(2, cliente.getDireccion());
-            pStmt.setInt(3,cliente.getCiudad().getId()); 
-            pStmt.setString(4, cliente.getContacto());          
-            pStmt.setString(5, cliente.getTelefono());
-            pStmt.setString(6, cliente.getEmail());
-            pStmt.setString(7, cliente.getWebsite());
-            pStmt.setString(8, cliente.getActivo());
-            pStmt.setInt(9, cliente.getFormaPago().getId());
-            pStmt.setString(10, cliente.getRut());
             
-            pStmt.executeUpdate();
+            
+            csts.setString(1, cliente.getRazonSocial());
+            csts.setString(2, cliente.getDireccion());
+            csts.setInt(3,cliente.getCiudad().getId()); 
+            csts.setString(4, cliente.getContacto());          
+            csts.setString(5, cliente.getTelefono());
+            csts.setString(6, cliente.getEmail());
+            csts.setString(7, cliente.getWebsite());
+            csts.setString(8, cliente.getActivo());
+            csts.setString(9, cliente.getFormaPago().getFormaPago());
+            csts.setString(10, cliente.getRut());
+            
+            
+            
+            csts.executeUpdate();
+            
           return true;
         } catch (SQLException e) {
+            
             System.err.println(e.getMessage());
+            
             return false;
+            
         }
     }
 

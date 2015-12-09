@@ -55,18 +55,30 @@
                <s:a action="listadoAsistencia" forceAddSchemeHostAndPort="true"><i class="glyphicon glyphicon-asterisk"></i>Asistencia</s:a>
              </li>           
                         
-                  
-                
-            </li>  
-                <li>
-                    <a href="javascript:;" data-toggle="collapse" data-target="#menuChico"><i class="fa fa-fw fa-arrows-v"></i> Desplegable <i class="fa fa-fw fa-caret-down"></i></a>
+                 <li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#menuChico"><i class="fa fa-fw fa-arrows-v"></i> Clientes <i class="fa fa-fw fa-caret-down"></i></a>
                     <ul id="menuChico" class="collapse">
                         <li>
-                            <a href="#">Sub Item1</a>
+                            <s:a action="listadoClientes" forceAddSchemeHostAndPort="true"><i class="glyphicon glyphicon-asterisk"></i>Listado de Clientes</s:a>
                         </li>
                         <li>
-                            <a href="#">Sub Item2</a>
+                            <s:a action="irAingresarCliente" forceAddSchemeHostAndPort="true"><i class="glyphicon glyphicon-asterisk"></i>Ingreso de Clientes</s:a>
                         </li>
+                       
+                    </ul>
+                </li>  
+                
+            
+                <li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#menuChico2"><i class="fa fa-fw fa-arrows-v"></i> Empleados <i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="menuChico2" class="collapse">
+                        <li>
+                            <s:a action="listadoEmpleados" forceAddSchemeHostAndPort="true"><i class="glyphicon glyphicon-asterisk"></i>Listado de Empleados</s:a>
+                        </li>
+                        <li>
+                            <s:a action="irAingresarEmpleado" forceAddSchemeHostAndPort="true"><i class="glyphicon glyphicon-asterisk"></i>Ingreso de Empleados</s:a>
+                        </li>
+                       
                     </ul>
                 </li>
 

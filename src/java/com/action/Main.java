@@ -75,12 +75,15 @@ public class Main {
         DaoEmpleado daoEmp=  new DaoEmpleado();
         
         Empleado emp = daoEmp.buscarPorID("140050040");
-        System.out.println("Empleado 17234983" + emp.getEmail());
+        System.out.println("Empleado 140050040" + emp.getEmail());
         System.out.println("fecha nac" + emp.getFechaNac());
+        emp.setNombres("Fernando");
+        emp.setApellidos("Miranda");
         emp.setEmail("innknk@gmail.com");
          
         daoEmp.actualizar(emp);        
-        System.out.println("Empleado 17234983" + emp.getEmail());
+        System.out.println("Empleado 17234983: " + emp.getNombres());
+        System.out.println("Empleado 17234983: " + emp.getApellidos());
             
         
         DaoAsistencia daoAs = new DaoAsistencia();

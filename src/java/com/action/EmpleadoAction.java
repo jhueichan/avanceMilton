@@ -24,6 +24,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.util.ValueStack;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class EmpleadoAction {
 
@@ -46,15 +47,15 @@ public class EmpleadoAction {
     
     
 
-     private String rut;
-     private String nombres;
-     private String apellidos;
-     private String direccion;
-     private String fechaNac;
-     private String cargasFam;
-     private String telefono;
-     private String email;
-     private String password;     
+     public  String rut;
+     public String nombres;
+     public String apellidos;
+     public String direccion;
+     public String fechaNac;
+     public String cargasFam;
+     public String telefono;
+     public String email;
+     public String password;     
      // claves foraneas  
  
   
@@ -124,6 +125,16 @@ public class EmpleadoAction {
     public int IdProfesion;
     public int IdRol;
     
+    
+    
+    public String prepararFomularioCreacion(){
+      return Action.SUCCESS;
+    
+    }
+    
+    
+    
+    
     public String create() throws IOException {
         record = new Empleado();
 
@@ -183,51 +194,59 @@ public class EmpleadoAction {
     
 	public String update() throws IOException {
         try {
-                record.setRut(this.rut);
-                record.setNombres(this.nombres);
-                record.setApellidos(this.apellidos);
-                record.setDireccion(this.direccion);   
-                record.setCargasFam(this.cargasFam);
-                record.setTelefono(this.telefono);
-                record.setEmail(this.email);
-                record.setPassword(this.password);
-                
+                         
+                Empleado objEmpleado= new Empleado();     
+              
+                objEmpleado.setRut(rut);                             
+                objEmpleado.setNombres(nombres);
+                objEmpleado.setApellidos(apellidos);
+                objEmpleado.setDireccion(direccion);   
+                objEmpleado.setCargasFam(cargasFam);
+                objEmpleado.setTelefono(telefono);
+                objEmpleado.setEmail(email);
+                objEmpleado.setPassword(password);
+                 objEmpleado.setFechaNac(fechaNac);
+              
                 Afp miafp = new Afp();
                 miafp.setId(IdAfp);
-                record.setAfp_id(miafp);
+                objEmpleado.setAfp_id(miafp);
                 
                 Ciudad miciudad = new Ciudad();
                 miciudad.setId(IdCiudad);
-                record.setCiudad_id(miciudad);
+                objEmpleado.setCiudad_id(miciudad);
                 
                 EstadoCivil miestadocivil = new EstadoCivil();
                 miestadocivil.setId(IdEstadoCivil);
-                record.setEstado_civil_id(miestadocivil);
+                objEmpleado.setEstado_civil_id(miestadocivil);
                 
                 Nacionalidad minacionalidad = new Nacionalidad();
                 minacionalidad.setId(IdNacionalidad);
-                record.setNacionalidad_id(minacionalidad);
+                objEmpleado.setNacionalidad_id(minacionalidad);
                 
                 Prevision miprevision = new Prevision();
                 miprevision.setId(IdPrevision);
-                record.setPrevision_id(miprevision);
+                objEmpleado.setPrevision_id(miprevision);
                 
                 Profesion miprofesion = new Profesion();
                 miprofesion.setId(IdProfesion);
-                record.setProfesion_id(miprofesion);
+                objEmpleado.setProfesion_id(miprofesion);
                 
                 Rol mirol = new Rol();
-                mirol.setId(IdRol);
-                record.setRol_id(mirol);
+                mirol.setId(IdRol);                
+                objEmpleado.setRol_id(mirol);
 			// Update existing record
-			dao.actualizar(record);
-			result = "OK";
+             
+                 dao.actualizar(objEmpleado);
+              
+	         result = "OK";
+                 return Action.SUCCESS;
 		} catch (Exception e) {
 			result = "ERROR";
 			message = e.getMessage();
 			System.err.println(e.getMessage());
+                 return Action.ERROR;
 		}
-		return Action.SUCCESS;
+		
 	}
 
 	public String delete() throws IOException {
@@ -242,6 +261,9 @@ public class EmpleadoAction {
 		}
 		return Action.SUCCESS;
 	}
+        
+        
+        
         
         public String buscaEmpleado() throws IOException {
         try {

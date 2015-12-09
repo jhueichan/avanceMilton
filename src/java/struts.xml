@@ -60,19 +60,32 @@
 <!--    acciones de las Ciudades --> 
         <action name="listaCiudades" class="com.action.CiudadAction" method="list">
             <result name="success">/ciudades.jsp</result>
-        </action>         
+        </action>     
         
-  <!--     Ingreso de un empleado   -->
+            
+                
+                        
+        
+  <!--     Empleado   -->
         <action name="listadoEmpleados" class="com.action.EmpleadoAction" method="list">
              <result name="success">/adminEmpleados.jsp</result>
          </action>
          
+            
+         <action name="irAingresarEmpleado" class="com.action.EmpleadoAction" method="list">
+             <result name="success">/adminEmpleadosIngresar.jsp</result>
+            
+         </action>        
+         
          <action name="ingresarEmpleado" class="com.action.EmpleadoAction" method="create">
              <result type="chain">listadoEmpleados</result>
+            
          </action>
          
          <action name="actualizarEmpleado" class="com.action.EmpleadoAction" method="update">
              <result type="chain">listadoEmpleados</result>
+             
+             
          </action>
          
          <action name="eliminarEmpleado" class="com.action.EmpleadoAction" method="delete">
@@ -84,12 +97,21 @@
          </action>
          
         <action name="buscarEmpleado" class="com.action.EmpleadoAction" method="buscaEmpleado">
-             <result type="chain">listadoEmpleados</result>
+             <result name="success">adminEmpleadosActualizar.jsp</result>
          </action> 
+         
+         
+         
       
          <!--     Cliente   -->
+         
+         <action name="irAingresarCliente" class="com.action.ClienteAction" method="list">
+             <result name="success">/adminClientesIngresar.jsp</result>
+            
+         </action>
+         
          <action name="buscarCliente" class="com.action.ClienteAction" method="buscaCliente">
-             <result type="chain">listadoClientes</result>
+             <result name="success">/adminClientesActualizar.jsp</result>
          </action> 
          <action name="cliente" class="com.action.ClienteAction" method="execute">
              <result name="success">/adminClientes.jsp</result>
@@ -107,6 +129,11 @@
              <result type="chain">listadoClientes</result>
          </action>
          
+         <action name="actualizarCliente" class="com.action.ClienteAction" method="update">
+             <result type="chain">listadoClientes</result>
+         </action>
+         
+         
          
   <!--     Asistencia   -->
             <action name="listadoAsistencia" class="com.action.AsistenciaAction" method="list">
@@ -115,7 +142,7 @@
             
             <action name="ingresarAsistencia" class="com.action.AsistenciaAction" method="create">
              <result type="chain">listadoAsistencia</result>
-         </action>
+            </action>
     </package>
 </struts>
  

@@ -16,6 +16,8 @@ import com.model.Profesion;
 import com.model.Rol;
 import com.service.EmpleadoInterface;
 import java.sql.CallableStatement;
+//import java.sql.Date;
+import java.util.Date;
 import java.text.SimpleDateFormat;
 
 
@@ -157,14 +159,26 @@ public class DaoEmpleado implements EmpleadoInterface {
          
         try {
             csts = dbConnection.prepareCall("{call actualizar_empleado(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");           
-            
-            
+                        
             csts.setString(1, empleado.getNombres());
             csts.setString(2, empleado.getApellidos());
             csts.setString(3, empleado.getDireccion());
             csts.setInt(4,empleado.getCiudad_id().getId());            
-            csts.setInt(5, empleado.getNacionalidad_id().getId());
-            csts.setString(6,empleado.getFechaNac());        
+            csts.setInt(5, empleado.getNacionalidad_id().getId()); 
+            
+            
+            
+            
+            
+            SimpleDateFormat smIn = new SimpleDateFormat(empleado.getFechaNac());
+            SimpleDateFormat smOut = new SimpleDateFormat("dd/MM/yy"); 
+            String input = empleado.getFechaNac();
+            Date date = smIn.parse(input);
+            
+            
+            csts.setString(6,smOut.format(date)); 
+           
+            
             csts.setInt(7,empleado.getEstado_civil_id().getId());    
             csts.setString(8, empleado.getCargasFam());            
             csts.setInt(9, empleado.getAfp_id().getId());

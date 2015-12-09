@@ -65,9 +65,11 @@ public class ClienteAction {
 
         
         record.setRut(this.rut);
+         
         record.setRazonSocial(this.razonSocial);
-        record.setDireccion(this.direccion);
         
+        record.setDireccion(this.direccion);
+       
         Ciudad miCiudad = new Ciudad();
         miCiudad.setId(IdCiudad);
         record.setCiudad(miCiudad);
@@ -98,33 +100,40 @@ public class ClienteAction {
     }
      
      public String update() throws IOException {
+          Cliente cliente = new Cliente();
+         
          try {
-                record.setRut(this.rut);
-                record.setRazonSocial(this.razonSocial);
-                record.setDireccion(this.direccion);
+                cliente.setRut(this.rut);
+                cliente.setRazonSocial(this.razonSocial);
+                cliente.setDireccion(this.direccion);
                 
                 Ciudad miciudad = new Ciudad();
                 miciudad.setId(IdCiudad);
-                record.setCiudad(miciudad);
+                cliente.setCiudad(miciudad);
         
-                record.setContacto(this.contacto);
-                record.setTelefono(this.telefono);
-                record.setEmail(this.email);
-                record.setWebsite(this.website);
-                record.setActivo(this.activo);
-        
+                cliente.setContacto(this.contacto);
+                cliente.setTelefono(this.telefono);
+                cliente.setEmail(this.email);
+                cliente.setWebsite(this.website);
+                cliente.setActivo(this.activo);
+                
+               
                 FormaPago miformaPago = new FormaPago();
                 miformaPago.setId(IdFormaPago);
-                record.setFormaPago(miformaPago);
-                dao.actualizar(record);
+                cliente.setFormaPago(miformaPago);
+              
+                
+                dao.actualizar(cliente);
 			result = "OK";
+                        return Action.SUCCESS;
              
          } catch (Exception e) {
                 result = "ERROR";
                 message = e.getMessage();
                 System.err.println(e.getMessage());
+                return Action.ERROR;
          }
-         return Action.SUCCESS;
+            
      }
      
      public String delete() throws IOException {
@@ -159,7 +168,7 @@ public class ClienteAction {
          System.out.println("email:  " + record.getEmail());
          System.out.println("website:  " + record.getWebsite());
          System.out.println("activo:  " + record.getActivo());
-         System.out.println("forma pago:  " + record.getFormaPago().getId());
+         System.out.println("forma pago:  " + record.getFormaPago().getFormaPago());
           return Action.SUCCESS;
      }
 

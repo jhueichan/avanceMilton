@@ -23,7 +23,7 @@
                             <sj:tabbedpanel id="tabs" cssClass="listas">
 
                                 <sj:tab id="lista_clientes" target="tabListaClientes" label="Listar Clientes"/>
-                                <sj:tab id="ingreso_clientes" target="tabIngresoClientes" label="Ingresar Clientes"/>
+                               
 
                                 <div id="tabListaClientes">
                                     <h3>
@@ -66,7 +66,7 @@
                                                         </s:url>
                                                         <s:a href="%{url}" cssClass="fs1" aria-hidden="true">Actualizar</s:a>
 
-                                                        <s:a action="eliminarEmpleado">
+                                                        <s:a action="eliminarCliente">
                                                             <s:param name="rut" value="rut" />
                                                             <i class="glyphicon glyphicon-trash"></i>
                                                         </s:a>    
@@ -77,50 +77,7 @@
                                     </table>
                                 </div>
                                 
-                                <div id="tabIngresoClientes">
-                                    <s:form action="ingresarCliente" theme="bootstrap" label="Ingrese Clientes">
-                                        <s:textfield
-                                            label="Rut"
-                                            name="rut"/>
-                                        <s:textfield
-                                            label="Razón Social"
-                                            name="razonSocial"/>
-                                        <s:textfield
-                                            label="Dirección"
-                                            name="direccion"/>
-                                        <s:select 
-                                            label="Ciudad"
-                                            list="listaCiudad"
-                                            listValue="nombre"
-                                            name="IdCiudad"
-                                            listKey="id" />
-                                        <s:textfield
-                                            label="Contacto"
-                                            name="contacto"/>
-                                        <s:textfield
-                                            label="Teléfono"
-                                            name="telefono"/>
-                                        <s:textfield
-                                            label="Email"
-                                            name="email"/>
-                                        <s:textfield
-                                            label="Website"
-                                            name="website"/>
-                                        <s:textfield
-                                            label="Activo"
-                                            name="activo"
-                                            maxLength="1"
-                                            size="1"/>
-                                        <s:select 
-                                            label="Forma de Pago"
-                                            list="listaFormaPago"
-                                            listValue="formaPago"
-                                            name="IdFormaPago"
-                                            listKey="id" />
-                                            
-                                        <s:submit value="Grabar datos" cssClass="btn btn-primary"/>
-                                    </s:form>
-                                </div>
+                                
                                 
                                 
                               </sj:tabbedpanel>    
